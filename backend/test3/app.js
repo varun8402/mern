@@ -27,4 +27,13 @@ app.get("/delete/:id",async(req,res)=>{
     let deleted = await userModel.findOneAndDelete({_id:req.params.id});
     res.redirect("/read");
 })
+app.get("/edit/:id",async(req,res)=>{
+    let user= await userModel.findOne({_id:req.params.id})
+    res.render("edit",{user});
+})
+app.post("/update/:id",async(req,res)=>{
+    let{name , email,imgurl} = req.body;
+    let updated= await userModel.findOneAndUpdate({_id:req.params.id},{name,email,imgurl},{new:true});
+    res.redirect("/read");
+})
 app.listen(3000);
