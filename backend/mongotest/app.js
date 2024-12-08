@@ -7,12 +7,12 @@ app.get("/" , (req,res)=>{
     res.send("hey");
 });
 app.get("/create" , async (req,res)=>{
-    let usercreated = await userModel.create({
+    let created = await userModel.create({
         name:"aa",
         username:"vaaa",
         email:"a@b.com"
     })
-    res.send(usercreated);
+    res.send(created);
 });
 app.get("/update",async(req,res)=>{
     let updated = await userModel.findOneAndUpdate({name:"aa"},{name:"zz"},{new:true});
